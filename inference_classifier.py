@@ -15,7 +15,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
-labels_dict = {0: 'A', 1: 'B', 2: 'C',}
+labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'K', 10: 'L', 11: 'M', 12: 'N', 13: 'O', 14: 'P', 15: 'Q', 16: 'R', 17: 'S', 18: 'T', 19: 'U', 20: 'V', 21: 'W', 22: 'X', 23: 'Y'}
 while True:
 
     data_aux = []
@@ -58,7 +58,8 @@ while True:
         x2 = int(max(x_) * W) - 10
         y2 = int(max(y_) * H) - 10
 
-        prediction = model.predict([np.asarray(data_aux)])
+        data_aux_extended = data_aux + [0] * (84 - len(data_aux))
+        prediction = model.predict([np.asarray(data_aux_extended)])
 
         predicted_character = labels_dict[int(prediction[0])]
 
